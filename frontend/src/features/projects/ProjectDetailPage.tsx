@@ -8,6 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { ProjectEditModal } from './ProjectEditModal';
 import { MachineEditModal } from '@/features/machines/MachineEditModal';
+import { ElementListSection } from '@/features/elements/ElementListSection';
 import { useEntityCRUD } from '@/hooks/useEntityCRUD';
 import { db } from '@/lib/db';
 import type { Project, Machine } from '@/lib/types';
@@ -121,11 +122,9 @@ export function ProjectDetailPage() {
         </TabsList>
 
         <TabsContent value="elements">
-          <EntityPlaceholder
-            label="Elements"
-            count={elements?.length ?? 0}
-            onAdd={() => {/* Phase 4 */}}
-          />
+          {machine && id && (
+            <ElementListSection machineId={machine.id} projectId={id} />
+          )}
         </TabsContent>
         <TabsContent value="cables">
           <EntityPlaceholder
