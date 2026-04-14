@@ -6,6 +6,8 @@ import { LoginPage } from '@/features/auth/LoginPage';
 import { SignUpPage } from '@/features/auth/SignUpPage';
 import { AppLayout } from '@/components/AppLayout';
 import { ProjectListPage } from '@/features/projects/ProjectListPage';
+import { ProjectCreatePage } from '@/features/projects/ProjectCreatePage';
+import { ProjectDetailPage } from '@/features/projects/ProjectDetailPage';
 
 function App() {
   return (
@@ -25,15 +27,9 @@ function App() {
                   <AppLayout>
                     <Routes>
                       <Route path="/projects" element={<ProjectListPage />} />
+                      <Route path="/projects/new" element={<ProjectCreatePage />} />
+                      <Route path="/projects/:id" element={<ProjectDetailPage />} />
                       {/* Placeholder routes for later phases */}
-                      <Route
-                        path="/projects/new"
-                        element={<Placeholder label="New Project" />}
-                      />
-                      <Route
-                        path="/projects/:id"
-                        element={<Placeholder label="Project Detail" />}
-                      />
                       <Route
                         path="/projects/:projectId/elements/:elementId"
                         element={<Placeholder label="Element Detail" />}
