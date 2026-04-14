@@ -9,6 +9,7 @@ import { ProjectListPage } from '@/features/projects/ProjectListPage';
 import { ProjectCreatePage } from '@/features/projects/ProjectCreatePage';
 import { ProjectDetailPage } from '@/features/projects/ProjectDetailPage';
 import { ElementDetailPage } from '@/features/elements/ElementDetailPage';
+import { WireEntryPage } from '@/features/wires/WireEntryPage';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
                       />
                       <Route
                         path="/projects/:projectId/wires/new"
-                        element={<Placeholder label="Wire Entry" />}
+                        element={<WireEntryPage />}
                       />
                       <Route path="*" element={<Navigate to="/projects" replace />} />
                     </Routes>
@@ -49,14 +50,6 @@ function App() {
         </div>
       </AuthProvider>
     </BrowserRouter>
-  );
-}
-
-function Placeholder({ label }: { label: string }) {
-  return (
-    <div className="flex items-center justify-center py-20">
-      <p className="text-muted-foreground">{label} - coming soon</p>
-    </div>
   );
 }
 

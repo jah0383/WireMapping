@@ -9,6 +9,8 @@ import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { ProjectEditModal } from './ProjectEditModal';
 import { MachineEditModal } from '@/features/machines/MachineEditModal';
 import { ElementListSection } from '@/features/elements/ElementListSection';
+import { CableListSection } from '@/features/cables/CableListSection';
+import { WireListSection } from '@/features/wires/WireListSection';
 import { useEntityCRUD } from '@/hooks/useEntityCRUD';
 import { db } from '@/lib/db';
 import type { Project, Machine } from '@/lib/types';
@@ -127,18 +129,14 @@ export function ProjectDetailPage() {
           )}
         </TabsContent>
         <TabsContent value="cables">
-          <EntityPlaceholder
-            label="Cables"
-            count={cables?.length ?? 0}
-            onAdd={() => {/* Phase 5 */}}
-          />
+          {machine && (
+            <CableListSection machineId={machine.id} />
+          )}
         </TabsContent>
         <TabsContent value="wires">
-          <EntityPlaceholder
-            label="Wires"
-            count={wires?.length ?? 0}
-            onAdd={() => {/* Phase 5 */}}
-          />
+          {machine && id && (
+            <WireListSection machineId={machine.id} projectId={id} />
+          )}
         </TabsContent>
       </Tabs>
 
@@ -208,29 +206,3 @@ function MachineInfoGrid({ machine }: { machine: Machine }) {
   );
 }
 
-function EntityPlaceholder({
-  label,
-  count,
-  onAdd,
-}: {
-  label: string;
-  count: number;
-  onAdd: () => void;
-}) {
-  return (
-    <div className="py-8 text-center">
-      {count === 0 ? (
-        <div className="space-y-2">
-          <p className="text-muted-foreground">No {label.toLowerCase()} yet.</p>
-          <Button variant="outline" onClick={onAdd}>
-            Add {label.slice(0, -1)}
-          </Button>
-        </div>
-      ) : (
-        <p className="text-muted-foreground">
-          {count} {label.toLowerCase()} — detail view coming in the next phase.
-        </p>
-      )}
-    </div>
-  );
-}
