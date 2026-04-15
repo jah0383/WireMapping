@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, type FormEvent } from 'react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -71,6 +72,7 @@ export function CableEditModal({
 
   async function handleDelete() {
     await remove(cable.id);
+    toast.success('Cable deleted');
     onOpenChange(false);
   }
 

@@ -1,5 +1,6 @@
 import { useState, useRef, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FormField } from '@/components/FormField';
@@ -55,6 +56,7 @@ export function ProjectCreatePage() {
       updated_at: '',
     });
 
+    toast.success('Project created');
     navigate(`/projects/${projectId}`);
   }
 

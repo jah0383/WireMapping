@@ -1,4 +1,5 @@
 import { useState, useRef, type FormEvent } from 'react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -75,6 +76,7 @@ export function CableCreateModal({
       updated_at: '',
     });
 
+    toast.success('Cable added');
     resetForm();
     onOpenChange(false);
     onCreated?.(cableId);

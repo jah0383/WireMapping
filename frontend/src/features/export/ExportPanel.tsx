@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
@@ -245,8 +246,11 @@ export function ExportPanel({ projectId, projectName }: ExportPanelProps) {
       } else {
         await generateOfflineCsv(projectId, projectName);
       }
+      toast.success('CSV export downloaded');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'CSV export failed');
+      const msg = err instanceof Error ? err.message : 'CSV export failed';
+      setError(msg);
+      toast.error(msg);
     } finally {
       setCsvLoading(false);
     }
@@ -264,8 +268,11 @@ export function ExportPanel({ projectId, projectName }: ExportPanelProps) {
         `${safeName}_report.pdf`,
         session.access_token,
       );
+      toast.success('PDF export downloaded');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'PDF export failed');
+      const msg = err instanceof Error ? err.message : 'PDF export failed';
+      setError(msg);
+      toast.error(msg);
     } finally {
       setPdfLoading(false);
     }
