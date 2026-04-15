@@ -11,6 +11,7 @@ import { MachineEditModal } from '@/features/machines/MachineEditModal';
 import { ElementListSection } from '@/features/elements/ElementListSection';
 import { CableListSection } from '@/features/cables/CableListSection';
 import { WireListSection } from '@/features/wires/WireListSection';
+import { ExportPanel } from '@/features/export/ExportPanel';
 import { useEntityCRUD } from '@/hooks/useEntityCRUD';
 import { db } from '@/lib/db';
 import type { Project, Machine } from '@/lib/types';
@@ -139,6 +140,9 @@ export function ProjectDetailPage() {
           )}
         </TabsContent>
       </Tabs>
+
+      {/* Export */}
+      {id && <ExportPanel projectId={id} projectName={project.name} />}
 
       {/* Modals */}
       <ProjectEditModal
