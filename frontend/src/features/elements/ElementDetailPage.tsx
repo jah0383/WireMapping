@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -40,6 +41,7 @@ export function ElementDetailPage() {
   async function handleDelete() {
     if (!elementId || !projectId) return;
     await remove(elementId);
+    toast.success('Element deleted');
     navigate(`/projects/${projectId}`, { replace: true });
   }
 

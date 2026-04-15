@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, type FormEvent } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -118,6 +119,7 @@ export function WireEditModal({
 
   async function handleDelete() {
     await remove(wire.id);
+    toast.success('Wire deleted');
     onOpenChange(false);
   }
 

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, type FormEvent } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -122,6 +123,7 @@ export function WireEntryPage() {
       updated_at: '',
     });
 
+    toast.success('Wire saved');
     resetForm();
     // Stay on the page for rapid entry
   }

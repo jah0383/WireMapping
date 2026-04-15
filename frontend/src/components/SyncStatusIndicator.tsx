@@ -3,7 +3,7 @@ import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 
 export function SyncStatusIndicator() {
   const online = useOnlineStatus();
-  const { pendingCount, isSyncing } = useSyncStatus();
+  const { pendingCount, errorCount, isSyncing } = useSyncStatus();
 
   let color = 'bg-green-500'; // synced
   let label = 'Synced';
@@ -11,6 +11,9 @@ export function SyncStatusIndicator() {
   if (!online) {
     color = 'bg-gray-400';
     label = 'Offline';
+  } else if (errorCount > 0) {
+    color = 'bg-red-500';
+    label = `${errorCount} error${errorCount !== 1 ? 's' : ''}`;
   } else if (isSyncing) {
     color = 'bg-yellow-500 animate-pulse';
     label = 'Syncing...';

@@ -1,4 +1,5 @@
 import { useState, useRef, type FormEvent } from 'react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -76,6 +77,7 @@ export function ElementCreateModal({
       updated_at: '',
     });
 
+    toast.success('Element added');
     resetForm();
     onOpenChange(false);
   }
